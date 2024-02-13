@@ -14,5 +14,6 @@ export const Primary: Story = {
     name: 'Olha',
     photo: 'https://randomuser.me/api/portraits/thumb/men/6.jpg',
     dob: new Date(),
+    uuid: '1',
   },
 }

@@ -1,16 +1,22 @@
 import { Card } from 'flowbite-react'
 import { DateTime } from 'luxon'
 import { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface EmployeeCardProps {
   name: string
   dob: Date
   photo: string
+  uuid: string
 }
 
-const EmployeeCard: FC<EmployeeCardProps> = ({ name, dob, photo }) => {
+const EmployeeCard: FC<EmployeeCardProps> = ({ name, dob, photo, uuid }) => {
+  const navigate = useNavigate()
+  const handleClick = () => {
+    navigate(`/employee/${uuid}`)
+  }
   return (
-    <div className="w-96">
+    <div className="w-96 cursor-pointer" onClick={handleClick}>
       <Card
         className="max-w-sm"
         imgAlt="Meaningful alt text for an image that is not purely decorative"

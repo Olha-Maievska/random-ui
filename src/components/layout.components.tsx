@@ -1,26 +1,24 @@
 import { FC, PropsWithChildren } from 'react'
-import { Navbar } from 'flowbite-react'
+import { Button, Navbar } from 'flowbite-react'
+import { useAuthStore } from '../modules/auth/store'
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
+  const authStore = useAuthStore()
   return (
-    <Navbar fluid rounded>
-      <Navbar.Brand>
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Flowbite React
-        </span>
-      </Navbar.Brand>
-      <Navbar.Toggle />
-      <Navbar.Collapse>
-        <Navbar.Link href="#" active>
-          Home
-        </Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
-        <Navbar.Link href="#">Services</Navbar.Link>
-        <Navbar.Link href="#">Pricing</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
-      </Navbar.Collapse>
-      <main>{children}</main>
-    </Navbar>
+    <div className="mx-auto px-12">
+      <Navbar fluid rounded>
+        <Navbar.Brand href="/">
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+            HRBite
+          </span>
+        </Navbar.Brand>
+        <div className="flex md:order-2">
+          {authStore.isLoggedIn && <Button>Log out</Button>}
+          <Navbar.Toggle />
+        </div>
+        <main>{children}</main>
+      </Navbar>
+    </div>
   )
 }
 
