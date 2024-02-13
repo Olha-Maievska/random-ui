@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LoginPage from './modules/auth/pages/login.page'
 import { PrivateRoute } from './modules/auth/components/private-route.components'
-import Layout from './components/layout.components'
+import ListEmployees from './modules/employees/pages/list-employees.page'
 
 interface AppProps {}
 
@@ -15,7 +15,7 @@ const App: FC<AppProps> = () => {
           path="/"
           element={
             <PrivateRoute>
-              <Layout></Layout>
+              <ListEmployees />
             </PrivateRoute>
           }
         />
