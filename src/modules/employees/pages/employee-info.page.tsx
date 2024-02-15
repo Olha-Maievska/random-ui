@@ -1,8 +1,9 @@
 import { FC } from 'react'
 import { useEmployeeStore } from '../store'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { DateTime } from 'luxon'
 import { Alert } from 'flowbite-react'
+import HrButton from '../../../components/hr-button.components'
 
 interface EmployeeInfoProps {}
 
@@ -10,6 +11,11 @@ const EmployeeInfo: FC<EmployeeInfoProps> = () => {
   const employeeStore = useEmployeeStore()
   const params = useParams()
   const employee = employeeStore.findEmployeeById(params.id || '')
+  const navigate = useNavigate()
+
+  const handleEditClick = () => {
+    navigate(`/employee/${params.id}/edit`)
+  }
 
   if (!employee)
     return (
@@ -18,6 +24,7 @@ const EmployeeInfo: FC<EmployeeInfoProps> = () => {
         plese try again later
       </Alert>
     )
+
   return (
     <div className="my-8">
       <h5 className="text-3xl text-center font-bold tracking-tight text-gray-900 dark:text-white">
@@ -30,6 +37,9 @@ const EmployeeInfo: FC<EmployeeInfoProps> = () => {
           employee?.dob.date || new Date().toISOString()
         ).toLocaleString(DateTime.DATE_FULL)}
       </p>
+      <div className="flex justify-center mt-8">
+        <HrButton onClick={handleEditClick}>Edit</HrButton>
+      </div>
     </div>
   )
 }

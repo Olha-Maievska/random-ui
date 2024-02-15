@@ -16,8 +16,8 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
           {authStore.isLoggedIn && <Button>Log out</Button>}
           <Navbar.Toggle />
         </div>
-        <main>{children}</main>
       </Navbar>
+      <main>{children}</main>
     </div>
   )
 }

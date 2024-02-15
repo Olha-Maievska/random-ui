@@ -15,6 +15,7 @@ const EmployeeCard: FC<EmployeeCardProps> = ({ name, dob, photo, uuid }) => {
   const handleClick = () => {
     navigate(`/employee/${uuid}`)
   }
+
   return (
     <div className="w-96 cursor-pointer" onClick={handleClick}>
       <Card
