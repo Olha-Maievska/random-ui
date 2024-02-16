@@ -17,6 +17,7 @@ interface UpdateEmployeeByIDData {
 
 class EmployeeStore {
   listFetchStatus: FetchStatus = 'NOT_STARTED'
+  deleteEmployeeStatus: FetchStatus = 'NOT_STARTED'
   listEmployees: ListEmployeesPaginationDto['results'] = []
 
   constructor() {
@@ -35,14 +36,25 @@ class EmployeeStore {
         },
       })
       const updatedEmployees = this.getUpdatedEmployees()
-      this.listFetchStatus = 'SUCCESS'
-      this.listEmployees = data.results.map((emp) => {
-        const updatedEmployee = updatedEmployees.find(
-          (empl) => empl.login.uuid === emp.login.uuid
-        )
+      const deletedEmployees = this.getDeletedEmployees()
 
-        return updatedEmployee || emp
-      })
+      this.listEmployees = data.results
+        .filter((employee) => {
+          const deletedEmployee = deletedEmployees.find(
+            (empl) => empl === employee.login.uuid
+          )
+
+          return !deletedEmployee
+        })
+        .map((emp) => {
+          const updatedEmployee = updatedEmployees.find(
+            (empl) => empl.login.uuid === emp.login.uuid
+          )
+
+          this.listFetchStatus = 'SUCCESS'
+
+          return updatedEmployee || emp
+        })
     } catch (error) {
       console.log(error)
       this.listFetchStatus = 'FAILED'
@@ -90,6 +102,30 @@ class EmployeeStore {
         )
 
         resolve(true)
+      }, 500)
+    })
+  }
+
+  getDeletedEmployees(): string[] {
+    return JSON.parse(localStorage.getItem('deletedEmployees') || '[]')
+  }
+
+  async deleteEmployeeById(id: string) {
+    this.deleteEmployeeStatus = 'LOADING'
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const deletedEmployees = this.getDeletedEmployees()
+        deletedEmployees.push(id)
+
+        this.listEmployees = []
+        this.listFetchStatus = 'NOT_STARTED'
+
+        localStorage.setItem(
+          'deletedEmployees',
+          JSON.stringify(deletedEmployees)
+        )
+        resolve(true)
+        this.deleteEmployeeStatus = 'NOT_STARTED'
       }, 500)
     })
   }

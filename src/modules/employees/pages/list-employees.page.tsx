@@ -41,19 +41,21 @@ const ListEmployees: FC<ListEmployeesProps> = observer(() => {
   }
 
   return (
-    <div className="flex justify-center flex-wrap gap-4 w-full my-8 px-8">
-      {employeeStore.listEmployees.map((employee) => {
-        return (
-          <EmployeeCard
-            key={`employee=${employee.login.uuid}`}
-            name={`${employee.name.first} ${employee.name.last}`}
-            dob={new Date(employee.dob.date)}
-            photo={employee.picture.large}
-            uuid={employee.login.uuid}
-          />
-        )
-      })}
-      <div className="flex overflow-x-auto sm:justify-center">
+    <div className="px-8 my-8">
+      <div className="flex justify-center flex-wrap gap-4">
+        {employeeStore.listEmployees.map((employee) => {
+          return (
+            <EmployeeCard
+              key={`employee=${employee.login.uuid}`}
+              name={`${employee.name.first} ${employee.name.last}`}
+              dob={new Date(employee.dob.date)}
+              photo={employee.picture.large}
+              uuid={employee.login.uuid}
+            />
+          )
+        })}
+      </div>
+      <div className="flex overflow-x-auto sm:justify-center mt-5">
         <Pagination
           currentPage={page ? Number(page) : 1}
           totalPages={10}

@@ -4,10 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { DateTime } from 'luxon'
 import { Alert } from 'flowbite-react'
 import HrButton from '../../../components/hr-button.components'
+import { observer } from 'mobx-react'
 
 interface EmployeeInfoProps {}
 
-const EmployeeInfo: FC<EmployeeInfoProps> = () => {
+const EmployeeInfo: FC<EmployeeInfoProps> = observer(() => {
   const employeeStore = useEmployeeStore()
   const params = useParams()
   const employee = employeeStore.findEmployeeById(params.id || '')
@@ -15,6 +16,11 @@ const EmployeeInfo: FC<EmployeeInfoProps> = () => {
 
   const handleEditClick = () => {
     navigate(`/employee/${params.id}/edit`)
+  }
+
+  const handleDeleteClick = async () => {
+    await employeeStore.deleteEmployeeById(params.id || '')
+    navigate('/', { replace: true })
   }
 
   if (!employee)
@@ -39,9 +45,16 @@ const EmployeeInfo: FC<EmployeeInfoProps> = () => {
       </p>
       <div className="flex justify-center mt-8">
         <HrButton onClick={handleEditClick}>Edit</HrButton>
+        <HrButton
+          color="failure"
+          onClick={handleDeleteClick}
+          isLoading={employeeStore.deleteEmployeeStatus === 'LOADING'}
+        >
+          Delete
+        </HrButton>
       </div>
     </div>
   )
-}
+})
 
 export default EmployeeInfo
