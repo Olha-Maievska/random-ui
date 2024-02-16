@@ -1,8 +1,7 @@
 import { makeAutoObservable, toJS } from 'mobx'
 import { api } from '../../core/api'
 import { ListEmployeesPaginationDto } from './api/list-employees-pagination.dto'
-
-type FetchStatus = 'NOT_STARTED' | 'LOADING' | 'SUCCESS' | 'FAILED'
+import { FetchStatus } from '../../components/types'
 
 interface FetchlistOfEmployeesParams {
   page?: number | null

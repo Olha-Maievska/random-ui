@@ -1,9 +1,15 @@
 import { FC, PropsWithChildren } from 'react'
-import { Button, Navbar } from 'flowbite-react'
+import { Navbar } from 'flowbite-react'
 import { useAuthStore } from '../modules/auth/store'
+import HrButton from './hr-button.components'
+import { observer } from 'mobx-react'
 
-const Layout: FC<PropsWithChildren> = ({ children }) => {
+const Layout: FC<PropsWithChildren> = observer(({ children }) => {
   const authStore = useAuthStore()
+
+  const handleLogoutClick = () => {
+    authStore.logout()
+  }
   return (
     <div className="mx-auto px-12">
       <Navbar fluid rounded>
@@ -13,13 +19,20 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
           </span>
         </Navbar.Brand>
         <div className="flex md:order-2">
-          {authStore.isLoggedIn && <Button>Log out</Button>}
+          {authStore.isLoggedIn && (
+            <HrButton
+              onClick={handleLogoutClick}
+              isLoading={authStore.logoutStatus === 'LOADING'}
+            >
+              Log out
+            </HrButton>
+          )}
           <Navbar.Toggle />
         </div>
       </Navbar>
       <main>{children}</main>
     </div>
   )
-}
+})
 
 export default Layout

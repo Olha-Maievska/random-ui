@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Alert, Checkbox, Label, TextInput } from 'flowbite-react'
+import { Alert, Label, TextInput } from 'flowbite-react'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -76,10 +76,7 @@ const LoginPage: FC<LoginPageProps> = () => {
             {...register('password')}
           />
         </div>
-        <div className="flex items-center gap-2">
-          <Checkbox id="remember" />
-          <Label htmlFor="remember">Remember me</Label>
-        </div>
+
         <HrButton type="submit" isLoading={isSubmitting}>
           Submit
         </HrButton>
