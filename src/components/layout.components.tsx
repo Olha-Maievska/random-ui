@@ -11,10 +11,10 @@ const Layout: FC<PropsWithChildren> = observer(({ children }) => {
     authStore.logout()
   }
   return (
-    <div className="mx-auto px-12">
-      <Navbar fluid rounded>
+    <div className="mx-auto md:px-12 mt-2">
+      <Navbar className="bg-neutral-200">
         <Navbar.Brand href="/">
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">
             HRBite
           </span>
         </Navbar.Brand>
@@ -27,9 +27,9 @@ const Layout: FC<PropsWithChildren> = observer(({ children }) => {
               Log out
             </HrButton>
           )}
-          <Navbar.Toggle />
         </div>
       </Navbar>
+
       <main>{children}</main>
     </div>
   )

@@ -42,7 +42,7 @@ const ListEmployees: FC<ListEmployeesProps> = observer(() => {
 
   return (
     <div className="px-8 my-8">
-      <div className="flex justify-center flex-wrap gap-4">
+      <div className="flex justify-center flex-wrap gap-6">
         {employeeStore.listEmployees.map((employee) => {
           return (
             <EmployeeCard
@@ -55,11 +55,13 @@ const ListEmployees: FC<ListEmployeesProps> = observer(() => {
           )
         })}
       </div>
-      <div className="flex overflow-x-auto sm:justify-center mt-5">
+      <div className="flex justify-center mt-5">
         <Pagination
           currentPage={page ? Number(page) : 1}
-          totalPages={10}
+          totalPages={4}
           onPageChange={onPageChange}
+          previousLabel="Back"
+          nextLabel="Next"
         />
       </div>
     </div>

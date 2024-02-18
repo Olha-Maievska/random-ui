@@ -12,17 +12,15 @@ interface EmployeeCardProps {
 
 const EmployeeCard: FC<EmployeeCardProps> = ({ name, dob, photo, uuid }) => {
   const navigate = useNavigate()
+
   const handleClick = () => {
     navigate(`/employee/${uuid}`)
   }
 
   return (
-    <div className="w-96 cursor-pointer" onClick={handleClick}>
-      <Card
-        className="max-w-sm"
-        imgAlt="Meaningful alt text for an image that is not purely decorative"
-        imgSrc={photo}
-      >
+    <div className="w-90 cursor-pointer" onClick={handleClick}>
+      <Card className="max-w-sm">
+        <img src={photo} alt={name} style={{ width: 220, height: 220 }} />
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {name}
         </h5>

@@ -42,7 +42,7 @@ const LoginPage: FC<LoginPageProps> = () => {
   }
 
   return (
-    <div className="w-96 mx-auto mt-32">
+    <div className="max-w-md w-full mx-auto mt-32 p-2">
       <form
         className="flex max-w-md flex-col gap-4"
         onSubmit={handleSubmit(onSubmit)}

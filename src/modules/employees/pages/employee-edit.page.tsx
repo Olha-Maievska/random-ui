@@ -66,15 +66,15 @@ const EmployeeEdit: FC<EmployeeEditProps> = observer(() => {
     )
 
   return (
-    <div className="w-96 mx-auto mt-32">
+    <div className="max-w-md w-full mx-auto mt-32 p-2">
       <form
-        className="flex max-w-md flex-col gap-4"
+        className="flex w-full flex-col gap-4"
         onSubmit={handleSubmit(onSubmit)}
       >
         {errors.root?.message && (
           <Alert color="failure">{errors.root?.message}</Alert>
         )}
-        <div>
+        <div className="w-full">
           <div className="mb-2 block">
             <Label htmlFor="firstName" value="Your name" />
           </div>
@@ -87,7 +87,7 @@ const EmployeeEdit: FC<EmployeeEditProps> = observer(() => {
             {...register('firstName')}
           />
         </div>
-        <div>
+        <div className="w-full">
           <div className="mb-2 block">
             <Label htmlFor="lastName" value="Your surname" />
           </div>
@@ -100,7 +100,7 @@ const EmployeeEdit: FC<EmployeeEditProps> = observer(() => {
             {...register('lastName')}
           />
         </div>
-        <div>
+        <div className="w-full">
           <div className="mb-2 block">
             <Label htmlFor="photo" value="Photo" />
           </div>
@@ -113,7 +113,7 @@ const EmployeeEdit: FC<EmployeeEditProps> = observer(() => {
             {...register('photo')}
           />
         </div>
-        <div>
+        <div className="w-full">
           <div className="mb-2 block">
             <Label htmlFor="birthDate" value="Date of birth" />
           </div>
@@ -126,7 +126,7 @@ const EmployeeEdit: FC<EmployeeEditProps> = observer(() => {
             {...register('birthDate')}
           />
         </div>
-        <HrButton type="submit" isLoading={isSubmitting}>
+        <HrButton type="submit" isLoading={isSubmitting} className="w-full">
           Submit
         </HrButton>
       </form>

@@ -33,10 +33,10 @@ const EmployeeInfo: FC<EmployeeInfoProps> = observer(() => {
 
   return (
     <div className="my-8">
-      <h5 className="text-3xl text-center font-bold tracking-tight text-gray-900 dark:text-white">
+      <h5 className="text-4xl text-center font-bold tracking-tight text-gray-900 dark:text-white">
         {employee?.name.first} {employee?.name.last}
       </h5>
-      <img className="mx-auto mt-8" src={employee?.picture.large} />
+      <img className="mx-auto mt-8 w-60" src={employee?.picture.large} />
       <p className="text-2xl text-center mt-8">
         Date of birth:{' '}
         {DateTime.fromISO(
@@ -44,8 +44,13 @@ const EmployeeInfo: FC<EmployeeInfoProps> = observer(() => {
         ).toLocaleString(DateTime.DATE_FULL)}
       </p>
       <div className="flex justify-center mt-8">
-        <HrButton onClick={handleEditClick}>Edit</HrButton>
+        <span className="mr-4">
+          <HrButton size="md" onClick={handleEditClick}>
+            Edit
+          </HrButton>
+        </span>
         <HrButton
+          size="md"
           color="failure"
           onClick={handleDeleteClick}
           isLoading={employeeStore.deleteEmployeeStatus === 'LOADING'}

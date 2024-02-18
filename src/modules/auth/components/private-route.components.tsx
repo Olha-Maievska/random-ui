@@ -8,6 +8,7 @@ interface PrivateRouteProps {}
 export const PrivateRoute: FC<PropsWithChildren<PrivateRouteProps>> = observer(
   ({ children }) => {
     const authStore = useAuthStore()
+
     if (!authStore.isLoggedIn) {
       return <Navigate to="/login" replace />
     }
