@@ -57,6 +57,7 @@ const LoginPage: FC<LoginPageProps> = () => {
           <TextInput
             id="email"
             type="email"
+            placeholder="hr@test.com"
             color={errors.email?.message ? 'failure' : 'gray'}
             helperText={errors.root?.message}
             required
@@ -70,6 +71,7 @@ const LoginPage: FC<LoginPageProps> = () => {
           <TextInput
             id="password"
             type="password"
+            placeholder="test"
             color={errors.password?.message ? 'failure' : 'gray'}
             helperText={errors.password?.message}
             required
