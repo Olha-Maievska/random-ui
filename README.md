@@ -1,4 +1,4 @@
-# HRBite
+# HRBite - educational project
 
 ## Prerequisites
 
