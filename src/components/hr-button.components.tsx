@@ -1,5 +1,5 @@
 import { Button, Spinner } from 'flowbite-react'
-import { ComponentProps } from 'react'
+import { ComponentProps, FC } from 'react'
 
 interface HrButtonProps extends ComponentProps<typeof Button> {
   isLoading?: boolean
