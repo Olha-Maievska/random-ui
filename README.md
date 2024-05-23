@@ -13,6 +13,11 @@
 
 'npm run dev
 
+## Login Data
+
+email: hr@test.com
+password: test
+
 ## Run tests
 
 Run 'npm run dev' and in separate terminal tab run 'npm cypress:open' and follow the steps
