@@ -1,4 +1,4 @@
-# HRBite
+# HRBite - educational project
 
 ## Prerequisites
 
@@ -12,6 +12,11 @@
 ## Start
 
 'npm run dev
+
+## Login Data
+
+email: hr@test.com
+password: test
 
 ## Run tests
 
